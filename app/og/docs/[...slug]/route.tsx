@@ -25,11 +25,7 @@ export async function GET(
   if (!page) notFound();
 
   return new ImageResponse(
-    <DefaultImage
-      title={page.data.title}
-      description={formatDescription(page.data.description)}
-      site={appName}
-    />,
+    <DefaultImage title={page.data.title} site={appName} />,
     {
       width: 1200,
       height: 630,
