@@ -1,0 +1,226 @@
+---
+title: Webflow Technical Guidelines
+description: Dokumentasi ini bertujuan untuk memastikan proses slicing di Webflow dilakukan secara konsisten, rapi, dan sesuai standar template. Fokus utama adalah implementasi teknis, bukan desain.
+---
+
+## 1. Struktur Dasar Webflow
+
+### Standar Wajib
+
+- Semua section harus menggunakan struktur:
+
+```js
+Section → Container → Wrapper → Isi Konten
+```
+
+- Tidak diperbolehkan menempatkan elemen langsung di dalam body (kecuali elemen global)
+- Wrapper wajib menggunakan Flexbox atau Grid (tidak menggunakan div kosong tanpa fungsi)
+
+### Spacing Section (Padding Horizontal)
+
+Gunakan standar berikut:
+
+- Desktop: 60px
+- Tablet: 60px
+- Mobile Landscape: 40px
+- Mobile Portrait: 30px
+
+Semua nilai padding ini wajib dibuat sebagai **variable** di Webflow dan digunakan secara konsisten.
+
+### Container Width
+
+- Halaman Home: max-width 1400px
+- Halaman lain: jika berbeda, wajib dibuat sebagai variable di Webflow
+
+Seluruh nilai max-width container harus dikelola menggunakan **variable** Webflow, bukan diatur manual per element.
+
+### Catatan
+
+Menempatkan elemen langsung di dalam section tanpa container akan menyebabkan layout tidak konsisten pada halaman lain.
+
+---
+
+## 2. Penamaan Class
+
+### Standar Wajib
+
+- Semua class menggunakan bahasa Inggris
+- Penamaan class menggunakan huruf kapital di awal setiap kata dan dipisahkan dengan spasi (contoh: **Hero Card**)
+- Webflow akan secara otomatis mengonversi penamaan tersebut menjadi format `hero-card`
+- Tidak menggunakan nama berbasis tampilan visual (contoh: Text Merah Kiri)
+
+### Contoh Penamaan
+
+- Tidak disarankan: `kotak-kiri`
+- Disarankan: `Hero Card`
+
+### Aturan Utama
+
+Gunakan nama berdasarkan fungsi, bukan bentuk visual.
+
+---
+
+## 3. Reusable Class
+
+### Standar Wajib
+
+- Selalu periksa apakah class sudah tersedia sebelum membuat class baru
+- Gunakan base class untuk elemen yang memiliki fungsi yang sama
+
+### Catatan
+
+Satu jenis elemen (misalnya button) seharusnya menggunakan satu base class yang sama.
+
+---
+
+## 4. Combo Class
+
+### Standar Wajib
+
+- Semua **variasi** styling harus menggunakan combo class
+- Tidak diperbolehkan membuat class baru hanya untuk perbedaan kecil (warna, ukuran)
+
+### Contoh
+
+- `Button + Primary`
+- `Button + Secondary`
+
+---
+
+## 5. Typography Mapping
+
+### Standar Wajib
+
+- Semua elemen teks harus menggunakan property dari design system
+- Tidak diperbolehkan melakukan styling manual
+
+### Variable Typography
+
+Semua properti berikut harus menggunakan variable Webflow:
+
+- Font size
+- Font weight
+- Letter spacing
+- Line height (menggunakan satuan em)
+- Font color
+
+### Penyesuaian
+
+Jika terdapat ukuran khusus (misalnya pada hero section), buat variable baru (contoh: **Heading Hero**)
+
+### Aturan Utama
+
+Tidak diperbolehkan melakukan styling teks langsung tanpa penggunaan variable pada elemen teks.
+
+---
+
+## 6. Color Usage
+
+### Standar Wajib
+
+- Semua warna harus menggunakan global color swatch
+- Tidak diperbolehkan menggunakan kode hex secara manual
+
+### Catatan
+
+Penggunaan warna manual akan menyebabkan inkonsistensi pada sistem desain.
+
+---
+
+## 7. Layout (Flex & Grid)
+
+### Standar Wajib
+
+- Gunakan Flexbox untuk alignment satu arah
+- Gunakan Grid untuk layout kompleks
+- Tidak diperbolehkan menggunakan margin untuk positioning
+
+### Contoh
+
+- Tidak disarankan: menggunakan margin-left untuk menggeser elemen
+- Disarankan: menggunakan justify atau align pada Flex/Grid
+
+---
+
+## 8. Navigator Cleanliness
+
+### Checklist
+
+- Semua section telah di-rename dengan jelas
+- Tidak terdapat class default seperti `Div Block XXX`
+- Struktur navigator rapi dan mudah dibaca
+
+### Catatan
+
+Struktur navigator yang tidak rapi akan menyulitkan proses pengembangan lanjutan.
+
+---
+
+## 9. Component Usage
+
+### Standar Wajib
+
+- Navbar harus menggunakan component
+- Footer harus menggunakan component
+- Section yang berulang harus dijadikan component
+
+### Catatan
+
+Penggunaan component mempermudah perubahan global pada banyak halaman.
+
+---
+
+## 10. Anti-Pattern
+
+### Hindari Hal Berikut
+
+- Membuat class baru tanpa kebutuhan
+- Melakukan styling manual
+- Tidak menggunakan container
+- Menggunakan margin untuk positioning
+- Mengunggah asset berukuran besar
+
+---
+
+## 11. Workflow Slicing
+
+Ikuti alur kerja berikut:
+
+1. Analisis desain di Figma
+2. Tentukan struktur (section → container)
+3. Naming class berdasarkan fungsi, bukan kondisi visual
+4. Buat class baru hanya jika diperlukan
+5. Rapikan struktur navigator
+
+---
+
+## 12. Aturan Tambahan (SEO & Image)
+
+### Heading (SEO)
+
+- Setiap halaman hanya boleh memiliki satu elemen H1
+- Gunakan H2, H3, dan seterusnya untuk struktur konten berikutnya
+
+### Image
+
+Setiap elemen image wajib memiliki:
+
+- Width
+- Height
+- Object-fit: cover
+
+### Catatan
+
+Penetapan width dan height diperlukan untuk menjaga stabilitas layout serta mencegah pergeseran saat loading.
+
+---
+
+## Penutup
+
+Dokumentasi ini dibuat untuk memastikan hasil slicing:
+
+- Konsisten
+- Terstruktur
+- Mudah dipelihara
+
+Seluruh proses harus mengikuti sistem yang telah ditentukan untuk menghindari kesalahan dan inkonsistensi.
