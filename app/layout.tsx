@@ -2,6 +2,14 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import "./global.css";
 import { Inter, Poppins } from "next/font/google";
 
+export const metadata = {
+  title: {
+    template: "%s | Hafidz Docs",
+    default: "Hafidz Docs",
+  },
+  description: "The React.js documentation framework.",
+};
+
 const inter = Inter({
   subsets: ["latin"],
 });
